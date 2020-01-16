@@ -1,30 +1,43 @@
+/*
+	================
+	  LINE DRAWING
+	================	
+
+	SAHIL HADKE
+	16
+*/
+
 #include<iostream>
+#include<graphics.h>
 #include<math.h>
 using namespace std;
 
-void DDA_Algo(int x1, int y1, int x2, int y2){
+void DDA_Algo(int X0, int Y0, int X1, int Y1) 
+{ 
+    int dx = X1 - X0; 
+    int dy = Y1 - Y0; 
+  
+    int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy); 
+  
+    float Xinc = dx / (float) steps; 
+    float Yinc = dy / (float) steps; 
+  
+    float X = X0; 
+    float Y = Y0; 
+	
+	int gd = DETECT, gm;
+	initgraph(&gd, &gm, NULL);
 
-    float dx = x2-x1, dy = y2 - y1;
-    int len;
+    for (int i = 0; i <= steps; i++) 
+    { 
+        putpixel (X,Y,WHITE);  
+        X += Xinc;          
+        Y += Yinc;        
+     } 
 
-    float x = x1 + 0.5*(dx/abs((int)dx)), y = y1 + 0.5*(dy/abs((int)dy));
-
-    if(abs((int)dx) > abs((int)dy))
-        len = abs((int)dx);
-    else
-        len = abs((int)dy);
-
-    dx = (x2-x1)/(float)len, dy = (y2-y1)/(float)len;
-    cout<<dx<<" "<<dy<<endl<<endl<<endl;
-
-    for(int i = 0; i <= len; i++)
-    {
-        //putpixel(floor(x), floor(y));
-        cout<<floor(x)<<" "<<floor(y)<<endl;
-        x+=dx;
-        y+=dy;
-    }
-}
+	getch();
+	closegraph();
+} 
 
 void Bresenham_Algo(int x1, int y1, int x2, int y2){
 
@@ -37,9 +50,12 @@ void Bresenham_Algo(int x1, int y1, int x2, int y2){
     else
         len = abs(dy);
 
+	int gd = DETECT, gm;
+	initgraph(&gd, &gm, NULL);
+
     for(int i = 0; i <= len; i++)
     {
-        cout<<x<<" "<<y<<endl;
+        putpixel(x, y, 255);
         while(e >= 0)
         {
             y++;
@@ -49,6 +65,9 @@ void Bresenham_Algo(int x1, int y1, int x2, int y2){
         x++;
         e = e + 2*dy;
     }
+
+	getch();
+	closegraph();
 }
 
 int main()
@@ -68,11 +87,11 @@ int main()
             case 1:
                 cout<<"Enter x1 :";
                 cin>>x1;
-                cout<<"Enter x1 :";
+                cout<<"Enter y1 :";
                 cin>>y1;
-                cout<<"Enter x1 :";
+                cout<<"Enter x2 :";
                 cin>>x2;
-                cout<<"Enter x1 :";
+                cout<<"Enter y2 :";
                 cin>>y2;
 
                 DDA_Algo(x1, y1, x2, y2);
@@ -81,11 +100,11 @@ int main()
             case 2:
                 cout<<"Enter x1 :";
                 cin>>x1;
-                cout<<"Enter x1 :";
+                cout<<"Enter y1 :";
                 cin>>y1;
-                cout<<"Enter x1 :";
+                cout<<"Enter x2 :";
                 cin>>x2;
-                cout<<"Enter x1 :";
+                cout<<"Enter y2 :";
                 cin>>y2;
 
                 Bresenham_Algo(x1, y1, x2, y2);
