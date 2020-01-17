@@ -6,7 +6,6 @@
 	SAHIL HADKE
 	16
 */
-
 #include<iostream>
 #include<graphics.h>
 #include<math.h>
