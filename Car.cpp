@@ -9,7 +9,6 @@ int main(){
 
 	int road_height = 350, road_len = 700, offset = 50, tire_offset = -10;	
 
-
 	for(int i = 0; i <= 375; i++)
 	{
 		
